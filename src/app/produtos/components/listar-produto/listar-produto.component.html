@@ -1,0 +1,24 @@
+<h1>Lista de Produtos</h1>
+
+<nz-table #basicTable [nzData]="produtos">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let produto of basicTable.nzData">
+      <td>{{produto.nomeProduto}}</td>
+      <td>{{produto.precoProduto | currency: 'R$ '}}</td>
+      <td>
+        <a [routerLink]="['/produtos/editar', produto.id]">Editar</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="modalRemover(produto)" >Remover</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<button class="btn-novo-produto" nz-button nzType="primary" [routerLink]="['/produtos/cadastrar']">Novo Produto</button>
